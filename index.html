@@ -103,10 +103,10 @@
          */
         const getPersonList = async () => {
             try {
-              const res = await fetch('https://willowtreeapps.com/api/v1.0/profiles');
-              return await res.json();
+                const res = await fetch('https://willowtreeapps.com/api/v1.0/profiles');
+                return await res.json();
             } catch(err) {
-               console.log(err);
+                console.log(err);
             }
         }
 
@@ -146,10 +146,10 @@
          * searching for.
          */
         const filterByName = (searchForName, personList) => 
-          personList.filter(person => 
-            person.firstName.toLowerCase().includes(searchForName.toLowerCase()) ||
-            person.lastName.toLowerCase().includes(searchForName.toLowerCase())
-          );
+            personList.filter(person => 
+                person.firstName.toLowerCase().includes(searchForName.toLowerCase()) ||
+                person.lastName.toLowerCase().includes(searchForName.toLowerCase())
+            );
 
 
         /**
