@@ -101,19 +101,24 @@
          *        ...
          *    ]
          */
-        const getPersonList = () => {
-            return new Promise((resolve, reject) => {
-                fetch('https://willowtreeapps.com/api/v1.0/profiles')
-                .then(response => {
-                    if (response.status !== 200) {
-                        reject(new Error("Error!"));
-                    }
+        const getPersonList = async () => {
+            try {
+              const res = await fetch('https://willowtreeapps.com/api/v1.0/profiles');
+              return await res.json();
+            } catch(err) {
+               console.log(err);
+            }
+                
+            //     .then(response => {
+            //         if (response.status !== 200) {
+            //             reject(new Error("Error!"));
+            //         }
 
-                    response.json().then(imageList => {
-                        resolve(imageList);
-                    });
-                });
-            });
+            //         response.json().then(imageList => {
+            //             resolve(imageList);
+            //         });
+            //     });
+            // });
         }
 
 
@@ -238,12 +243,12 @@
                 };
             },
 
-            componentDidMount() {
-                getPersonList().then((personList) =>
-                    this.setState({
-                        personList,
-                        visiblePersonList: personList
-                    }));
+            async componentDidMount() {
+                const personList = await getPersonList();
+                this.setState({
+                    personList,
+                    visiblePersonList: personList
+                });
             },
 
             _shuffleList() {
